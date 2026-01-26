@@ -46,7 +46,7 @@ import DevMarker from 'react-dev-marker';
 </DevMarker>
 
 // Portal mode (for overflow:hidden parents)
-<DevMarker usePortal>
+<DevMarker isPortal>
   <ClippedContent />
 </DevMarker>
 ```
@@ -85,7 +85,7 @@ This way, everyone instantly sees what's in development and can click through to
 | `children` | `ReactNode` | - | The content to wrap |
 | `title` | `string` | - | Optional label shown after "DEV:" |
 | `isBlock` | `boolean` | `false` | If true, renders as block element |
-| `usePortal` | `boolean` | `false` | Renders tab via Portal (for overflow:hidden parents) |
+| `isPortal` | `boolean` | `false` | Renders tab via Portal (for overflow:hidden parents) |
 | `link` | `string` | - | Optional URL shown as clickable "↗" |
 
 ## License
