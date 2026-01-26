@@ -1,0 +1,55 @@
+{
+  "name": "react-dev-marker",
+  "version": "0.1.0",
+  "description": "A super simple React component that visually marks work-in-progress UI elements with a red dashed border and DEV label.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "dev",
+    "debug",
+    "marker",
+    "wrapper",
+    "wip",
+    "work-in-progress",
+    "demo",
+    "visual",
+    "component"
+  ],
+  "author": "Hxn",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hxn/react-dev-marker.git"
+  },
+  "homepage": "https://github.com/hxn/react-dev-marker#readme",
+  "bugs": {
+    "url": "https://github.com/hxn/react-dev-marker/issues"
+  }
+}
