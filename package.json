@@ -1,6 +1,6 @@
 {
   "name": "react-dev-marker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A super simple React component that visually marks work-in-progress UI elements with a red dashed border and DEV label.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
