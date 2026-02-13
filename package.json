@@ -17,6 +17,7 @@
   ],
   "sideEffects": false,
   "scripts": {
+    "dev": "npm run dev --prefix sandbox",
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "prepublishOnly": "npm run build"
   },
