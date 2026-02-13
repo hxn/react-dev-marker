@@ -7,6 +7,7 @@ const styles = {
     display: "inline-block",
   } as const,
   wrapperBlock: {
+    position: "relative",
     display: "block",
   } as const,
   tab: {
@@ -117,14 +118,15 @@ export function DevMarker({
 
   const tab = (
     <div
-      style={{
-        ...styles.tab,
-        ...(isPortal && {
-          ...styles.tabPortal,
-          top: tabPosition.top,
-          left: tabPosition.left,
-        }),
-      }}
+      style={
+        isPortal
+          ? {
+              ...styles.tabPortal,
+              top: tabPosition.top,
+              left: tabPosition.left,
+            }
+          : styles.tab
+      }
     >
       <span style={styles.devLabel}>DEV</span>
       {title && <span style={styles.title}>: {title}</span>}
@@ -145,7 +147,7 @@ export function DevMarker({
   return (
     <div
       ref={wrapperRef}
-      style={{ ...styles.wrapper, ...(isBlock && styles.wrapperBlock) }}
+      style={isBlock ? styles.wrapperBlock : styles.wrapper}
     >
       {isPortal && isMounted ? createPortal(tab, document.body) : tab}
       <div style={styles.content}>{children}</div>
