@@ -110,9 +110,11 @@ export function DevMarker({
 
     updatePosition();
     window.addEventListener("resize", handleResize, { passive: true });
+    window.addEventListener("scroll", handleResize, { passive: true, capture: true });
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleResize, { capture: true });
       cancelAnimationFrame(rafId);
     };
   }, [isPortal, isMounted, updatePosition]);
