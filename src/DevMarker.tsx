@@ -118,6 +118,7 @@ export function DevMarker({
 
   const tab = (
     <div
+      data-testid="dev-marker-tab"
       style={
         isPortal
           ? {
@@ -147,10 +148,13 @@ export function DevMarker({
   return (
     <div
       ref={wrapperRef}
+      data-testid="dev-marker-wrapper"
       style={isBlock ? styles.wrapperBlock : styles.wrapper}
     >
       {isPortal && isMounted ? createPortal(tab, document.body) : tab}
-      <div style={styles.content}>{children}</div>
+      <div data-testid="dev-marker-content" style={styles.content}>
+        {children}
+      </div>
     </div>
   );
 }
