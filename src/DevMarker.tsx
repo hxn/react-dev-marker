@@ -1,25 +1,25 @@
-import { useRef, useEffect, useState, ReactNode } from 'react';
-import { createPortal } from 'react-dom';
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 const styles = {
   wrapper: {
-    position: 'relative',
-    display: 'inline-block',
+    position: "relative",
+    display: "inline-block",
   } as const,
   wrapperBlock: {
-    display: 'block',
+    display: "block",
   } as const,
   tab: {
-    position: 'absolute',
+    position: "absolute",
     top: -14,
     left: 0,
-    backgroundColor: '#dc2626',
-    color: 'white',
+    backgroundColor: "#dc2626",
+    color: "white",
     fontSize: 11,
-    padding: '2px 4px',
+    padding: "2px 4px",
     lineHeight: 1,
     zIndex: 1,
-    whiteSpace: 'nowrap',
+    whiteSpace: "nowrap",
   } as const,
   tabPortal: {
     zIndex: 9999,
@@ -31,8 +31,8 @@ const styles = {
     fontWeight: 400,
   } as const,
   link: {
-    color: 'white',
-    textDecoration: 'none',
+    color: "white",
+    textDecoration: "none",
     marginLeft: 4,
     opacity: 0.7,
   } as const,
@@ -40,7 +40,7 @@ const styles = {
     opacity: 1,
   } as const,
   content: {
-    border: '1px dashed rgba(220, 38, 38, 0.75)',
+    border: "1px dashed rgba(220, 38, 38, 0.65)",
   } as const,
 };
 
@@ -74,7 +74,13 @@ export interface DevMarkerProps {
  * @param link - Optional URL shown as clickable "↗" next to the tab
  * @returns Wrapped element with red dashed border and DEV tab
  */
-export function DevMarker({ children, title, isBlock, isPortal, link }: DevMarkerProps) {
+export function DevMarker({
+  children,
+  title,
+  isBlock,
+  isPortal,
+  link,
+}: DevMarkerProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [tabPosition, setTabPosition] = useState({ top: 0, left: 0 });
   const [linkHovered, setLinkHovered] = useState(false);
@@ -96,12 +102,12 @@ export function DevMarker({ children, title, isBlock, isPortal, link }: DevMarke
     };
 
     updatePosition();
-    window.addEventListener('scroll', updatePosition);
-    window.addEventListener('resize', updatePosition);
+    window.addEventListener("scroll", updatePosition);
+    window.addEventListener("resize", updatePosition);
 
     return () => {
-      window.removeEventListener('scroll', updatePosition);
-      window.removeEventListener('resize', updatePosition);
+      window.removeEventListener("scroll", updatePosition);
+      window.removeEventListener("resize", updatePosition);
     };
   }, [isPortal, isMounted]);
 
@@ -109,7 +115,11 @@ export function DevMarker({ children, title, isBlock, isPortal, link }: DevMarke
     <div
       style={{
         ...styles.tab,
-        ...(isPortal && { ...styles.tabPortal, top: tabPosition.top, left: tabPosition.left }),
+        ...(isPortal && {
+          ...styles.tabPortal,
+          top: tabPosition.top,
+          left: tabPosition.left,
+        }),
       }}
     >
       <span style={styles.devLabel}>DEV</span>
@@ -131,7 +141,10 @@ export function DevMarker({ children, title, isBlock, isPortal, link }: DevMarke
   );
 
   return (
-    <div ref={wrapperRef} style={{ ...styles.wrapper, ...(isBlock && styles.wrapperBlock) }}>
+    <div
+      ref={wrapperRef}
+      style={{ ...styles.wrapper, ...(isBlock && styles.wrapperBlock) }}
+    >
       {isPortal && isMounted ? createPortal(tab, document.body) : tab}
       <div style={styles.content}>{children}</div>
     </div>
