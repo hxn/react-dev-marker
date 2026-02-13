@@ -6,6 +6,8 @@ Perfect for marking non-functional buttons, blocked features, or anything waitin
 
 **Zero dependencies** - only React as a peer dependency.
 
+![react-dev-marker examples](react-dev-marker.png)
+
 ## Installation
 
 ```bash
