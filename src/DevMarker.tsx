@@ -90,7 +90,9 @@ export function DevMarker({
     if (!isPortal || !isMounted || !wrapperRef.current) return;
 
     const updatePosition = () => {
-      const rect = wrapperRef.current!.getBoundingClientRect();
+      const element = wrapperRef.current;
+      if (!element) return;
+      const rect = element.getBoundingClientRect();
       setTabPosition({
         top: rect.top + window.scrollY - 14,
         left: rect.left + window.scrollX,
