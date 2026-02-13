@@ -100,11 +100,18 @@ export function DevMarker({
   useEffect(() => {
     if (!isPortal || !isMounted || !wrapperRef.current) return;
 
+    let rafId = 0;
+    const handleResize = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updatePosition);
+    };
+
     updatePosition();
-    window.addEventListener("resize", updatePosition);
+    window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
-      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(rafId);
     };
   }, [isPortal, isMounted, updatePosition]);
 
