@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 const styles = {
@@ -22,6 +22,7 @@ const styles = {
     whiteSpace: "nowrap",
   } as const,
   tabPortal: {
+    position: "fixed",
     zIndex: 9999,
   } as const,
   devLabel: {
@@ -86,28 +87,26 @@ export function DevMarker({
     setIsMounted(true);
   }, []);
 
+  const updatePosition = useCallback(() => {
+    const element = wrapperRef.current;
+    if (!element) return;
+    const rect = element.getBoundingClientRect();
+    setTabPosition({
+      top: rect.top - 14,
+      left: rect.left,
+    });
+  }, []);
+
   useEffect(() => {
     if (!isPortal || !isMounted || !wrapperRef.current) return;
 
-    const updatePosition = () => {
-      const element = wrapperRef.current;
-      if (!element) return;
-      const rect = element.getBoundingClientRect();
-      setTabPosition({
-        top: rect.top + window.scrollY - 14,
-        left: rect.left + window.scrollX,
-      });
-    };
-
     updatePosition();
-    window.addEventListener("scroll", updatePosition);
     window.addEventListener("resize", updatePosition);
 
     return () => {
-      window.removeEventListener("scroll", updatePosition);
       window.removeEventListener("resize", updatePosition);
     };
-  }, [isPortal, isMounted]);
+  }, [isPortal, isMounted, updatePosition]);
 
   const tab = (
     <div
