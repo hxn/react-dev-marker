@@ -16,6 +16,7 @@ const styles = {
     left: 0,
     backgroundColor: "#dc2626",
     color: "white",
+    fontFamily: "system-ui, -apple-system, sans-serif",
     fontSize: 11,
     padding: "2px 4px",
     lineHeight: 1,
@@ -122,6 +123,7 @@ export function DevMarker({
       style={
         isPortal
           ? {
+              ...styles.tab,
               ...styles.tabPortal,
               top: tabPosition.top,
               left: tabPosition.left,
