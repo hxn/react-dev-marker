@@ -40,7 +40,7 @@ const styles = {
     opacity: 1,
   } as const,
   content: {
-    border: '1px dashed #dc2626',
+    border: '1px dashed rgba(220, 38, 38, 0.75)',
   } as const,
 };
 
