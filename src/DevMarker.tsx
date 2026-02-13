@@ -34,10 +34,7 @@ const styles = {
     color: "white",
     textDecoration: "none",
     marginLeft: 4,
-    opacity: 0.7,
-  } as const,
-  linkHover: {
-    opacity: 1,
+    opacity: 0.85,
   } as const,
   content: {
     border: "1px dashed rgba(220, 38, 38, 0.65)",
@@ -83,7 +80,6 @@ export function DevMarker({
 }: DevMarkerProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [tabPosition, setTabPosition] = useState({ top: 0, left: 0 });
-  const [linkHovered, setLinkHovered] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -130,9 +126,7 @@ export function DevMarker({
           target="_blank"
           rel="noopener noreferrer"
           title={link}
-          style={{ ...styles.link, ...(linkHovered && styles.linkHover) }}
-          onMouseEnter={() => setLinkHovered(true)}
-          onMouseLeave={() => setLinkHovered(false)}
+          style={styles.link}
         >
           ↗
         </a>
